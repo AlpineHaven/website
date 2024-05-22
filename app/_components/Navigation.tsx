@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Navigation() {
+const Navigation: React.FC = () => {
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center">
@@ -31,4 +31,6 @@ export default function Navigation() {
       </ul>
     </nav>
   );
-}
+};
+
+export default Navigation;
