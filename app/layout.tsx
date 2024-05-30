@@ -10,7 +10,7 @@ const josefin = Josefin_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Alpine Haven",
+    template: "%s - Alpine Haven",
     default: "Alpine Haven",
   },
   description:
