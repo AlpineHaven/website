@@ -1,18 +1,18 @@
+import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { UsersIcon } from "@heroicons/react/24/solid";
 
 const CabinCard: React.FC<{
   cabin: {
-    id: string;
+    id: number;
     name: string;
     maxCapacity: number;
-    regularPrice: number;
+    regPrice: number;
     discount: number;
     image: string;
   };
 }> = ({ cabin }) => {
-  const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
+  const { id, name, maxCapacity, regPrice, discount, image } = cabin;
 
   return (
     <div className="flex border border-primary-800">
@@ -42,14 +42,14 @@ const CabinCard: React.FC<{
             {discount > 0 ? (
               <>
                 <span className="text-3xl font-[350]">
-                  ${regularPrice - discount}
+                  ${regPrice - discount}
                 </span>
                 <span className="font-semibold text-primary-600 line-through">
-                  ${regularPrice}
+                  ${regPrice}
                 </span>
               </>
             ) : (
-              <span className="text-3xl font-[350]">${regularPrice}</span>
+              <span className="text-3xl font-[350]">${regPrice}</span>
             )}
             <span className="text-primary-200">/ night</span>
           </p>

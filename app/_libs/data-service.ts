@@ -1,6 +1,30 @@
-/* import { supabase } from "./supabase";
+import { supabase } from "./supabase";
 
-export async function getCabin(id: string) {
+interface Cabin {
+  id: number;
+  name: string;
+  maxCapacity: number;
+  regPrice: number;
+  discount: number;
+  description: string;
+  image: string;
+}
+
+export async function getCabins(): Promise<Cabin[]> {
+  const { data, error } = await supabase
+    .from("cabins")
+    .select("id, name, maxCapacity, regPrice, discount, image")
+    .order("name");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Cabins could not be loaded");
+  }
+
+  return data as Cabin[];
+}
+
+export async function getCabin(id: number): Promise<Cabin | null> {
   const { data, error } = await supabase
     .from("cabins")
     .select("*")
@@ -12,33 +36,22 @@ export async function getCabin(id: string) {
 
   if (error) {
     console.error(error);
+    return null;
   }
 
-  return data;
+  return data as Cabin;
 }
 
-export async function getCabins() {
+export async function getCabinPrice(id: number) {
   const { data, error } = await supabase
     .from("cabins")
-    .select("id, name, maxCapacity, regularPrice, discount, image")
-    .order("name");
+    .select("regularPrice, discount")
+    .eq("id", id)
+    .single();
 
   if (error) {
     console.error(error);
-    throw new Error("Cabins could not be loaded");
   }
 
   return data;
-} */
-
-export async function getCountries() {
-  try {
-    const res = await fetch(
-      "https://restcountries.com/v2/all?fields=name,flag",
-    );
-    const countries = await res.json();
-    return countries;
-  } catch {
-    throw new Error("Could not fetch countries");
-  }
 }
